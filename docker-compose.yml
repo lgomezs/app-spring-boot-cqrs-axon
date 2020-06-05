@@ -1,0 +1,20 @@
+version: '2'
+services:
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    #image: lgomezs/app-cqrs-events
+    environment:
+      - AXONSERVER_HOST=axonserver
+    ports:
+    - "8081:8080"
+
+  axonserver:
+    image: axoniq/axonserver
+    hostname: axonserver
+    environment:
+      - AXONSERVER_HOSTNAME=axonserver
+    ports:
+      - 8024:8024
